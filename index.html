@@ -4,9 +4,9 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>LOL Skin | LOL英雄联盟免费换肤助手</title>
-    <meta name="keywords" content="LOl Skin,LOL,英雄联盟,League of Legends,免费,换肤插件,换肤助手,自慰皮肤">
-    <meta name="description" content="LOL Skin,LOL免费换肤助手,免费换肤插件,自慰皮肤">
+    <title>LOL Skin | LOL英雄联盟免费换肤助手下载 | LOL Skin密码</title>
+    <meta name="keywords" content="LOl Skin,LOL,英雄联盟,League of Legends,LOL Skin激活码,密码,免费,换肤插件,换肤助手,自慰皮肤,LOL Skin下载">
+    <meta name="description" content="LOL Skin,LOL免费换肤助手,免费换肤插件,自慰皮肤,LOL换肤插件下载">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/bootstrap.min.css'>
@@ -31,25 +31,39 @@
                                 title="LOL开黑交流"></a>
                     </p>
                     <p>
-                        当前版本:<span style="color:#FF9900"> V9.7.2</span>
+                        当前版本:<span style="color:#FF9900" id="version"> 加载中...</span>
                     </p>
+                    <p>
+                        KEY(密码):<span id="key"
+                            style="color:red;margin-left: 10px;font-size: 15px;">获取中...</span>
+                    </p>
+
                 </div>
                 <button type="button" class="btn btn-block btn-outline-dark" onclick="downloadClick()">点我下载</button>
                 <div class="text-center beiyong">
-                    <p>备用地址: <a href="http://dl2.modskinpro.com/LEAGUESKIN_9.7.2.zip?update=2155">点我下载</a></p>
+                    <p>备用地址: <a href="http://pan.bxmac.com/?/lolskin/LEAGUESKIN_9.13.5.zip" id="beiyongA">点我下载</a></p>
                 </div>
             </div>
         </div>
     </div>
 </body>
 <script>
+var version ="";
     $(function () {
         var rand = randomint();
         $("body").css("background-image", "url(img/bg-img-" + rand + ".jpg)");
+        $.get("http://bxmac.com:8989/getKey", function (data) {
+            $("#key").html(data);
+        });
+        $.get("http://bxmac.com:8989/getData", function (data) {
+            $("#beiyongA").attr("href", data.url);
+	    version = data.version;
+            $("#version").html("V" + data.version + "(更新时间:" + data.date + ")");
+        });
     })
 
     function downloadClick() {
-        window.location.href = "http://pan.bxmac.com/?/LEAGUESKIN_9.7.2.zip";
+        window.location.href = "http://bxmac.com/lolskin/LEAGUESKIN_"+version +".zip";
     }
     //随机整数
     function randomint() {
@@ -59,6 +73,9 @@
         var rand = parseInt(Math.random() * (x - y + 1) + y);
         return rand;
     }
+    $("#key").click(function () {
+        //window.open("http://bxmac.com:8989/getKey")
+    })
 </script>
 
 </html>
